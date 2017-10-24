@@ -17,6 +17,9 @@ module.exports = function(environment) {
         Date: false
       }
     },
+    fastboot: {
+          hostWhitelist: ['demo1671003.mockable.io/', /^localhost:\d+$/]
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
@@ -25,6 +28,9 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    }
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
