@@ -1,9 +1,27 @@
-{{#list-filter
-   filter=(action 'filterByCity')
-   as |rentals|}}
-  <ul class="results">
-    {{#each rentals as |rentalUnit|}}
-      <li>{{rental-listing rental=rentalUnit}}</li>
-    {{/each}}
-  </ul>
-{{/list-filter}}
+<ul class="results">
+  {{#each model as |model|}}
+    <li>
+      <article class="listing">
+        <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
+      <img src="{{model.image}}" alt="">
+      <small>View Larger</small>
+    </a>
+        <h3>{{link-to model.title "rentals.show" model}}</h3>
+        <div class="detail owner">
+          <span>Owner:</span> {{model.owner}}
+        </div>
+        <div class="detail type">
+          <span>Type:</span> {{rental-property-type model.propertyType}} - {{model.propertyType}}
+        </div>
+        <div class="detail location">
+          <span>Location:</span> {{model.city}}
+        </div>
+        <div class="detail bedrooms">
+          <span>Number of bedrooms:</span> {{model.bedrooms}}
+        </div>
+        {{location-map location=model.city}}
+      </article>
+    </li>
+
+  {{/each}}
+</ul>
